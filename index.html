@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+
+<html ng-app="app">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <link rel="icon" type="image/png" sizes="16x16" href="plugins/images/mark-github-black.png">
+    <title>andhikamaheva</title>
+    <link href="bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="plugins/bower_components/bootstrap-extension/css/bootstrap-extension.css" rel="stylesheet">
+    <link href="plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.css" rel="stylesheet">
+    <link href="css/animate.css" rel="stylesheet">
+    <link href="css/style.min.css" rel="stylesheet">
+    <link href="src/calendar-heatmap-mini.css">
+    <link href="css/colors/megna.css" id="theme" rel="stylesheet">
+    <script src="js/angular.min.js"></script>
+</head>
+    
+
+<body ng-controller="gitHubDataController" class="fix-header">
+    
+    <div class="preloader">
+        <div class="cssload-speeding-wheel"></div>
+    </div>
+    
+    <nav class="navbar navbar-default navbar-static-top m-b-0">
+        <div class="navbar-header fixed">
+         
+            <ul class="nav navbar-top-links navbar-left hidden-xs">
+                <li>
+                    <a href="javascript:void(0)" class="open-close hidden-xs waves-effect waves-light">
+                        <img style="width: 30px" src="plugins/images/mark-github.png">
+                    </a>
+                </li>
+                <li>
+                    <a class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" href="#">
+                        <span class="hidden-xs">
+                                          Pull request
+                                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" href="#">
+                        <span class="hidden-xs">
+                                          Issues
+                                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" href="#">
+                        <span class="hidden-xs">
+                                        Marketplace
+                                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" href="#">
+                        <span class="hidden-xs">
+                                        Explore
+                                        </span>
+                    </a>
+                </li>
+                
+            </ul>
+            
+            <ul class="nav navbar-top-links navbar-right pull-right">
+                
+                
+                <li>
+                    <form role="search" class="app-search hidden-xs">
+                        <input type="text" placeholder="Search..." class="form-control">
+                        <a href="">
+                            <i class="fa fa-search"></i>
+                        </a>
+                    </form>
+                </li>
+
+                <li>
+                    <a class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" href="#">
+                        <span class="hidden-xs">
+                                        Sign In or Sign Up
+                                        </span>
+                    </a>
+                </li>
+               
+            </ul>
+        </div>
+        
+    </nav>
+   
+    <div id="page-wrapper">
+        <div class="container-fluid">
+            <div class="row bg-title">
+                
+            </div>
+            <!-- .row -->
+            <div class="row">
+                <div class="col-md-3 el-element-overlay m-b-40">
+                    <div class="white-box">
+                        <div class="el-card-item">
+                            <div class="el-card-avatar el-overlay-1">
+                                <img ng-src="{{userData.avatar_url}}" />
+                                <div class="el-overlay">
+                                    <ul class="el-info">
+                                        <li>
+                                            <a class="btn default btn-outline image-popup-vertical-fit" href="plugins/images/users/1.jpg">
+                                                <i class="icon-magnifier"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="btn default btn-outline" href="javascript:void(0);">
+                                                <i class="icon-link"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="el-card-content">
+                                <h2><strong>{{userData.name}}</strong></h2>
+                                <h4>{{userData.login}}</h4>
+                                <hr>
+                                <h6>{{userData.bio}}</h6>
+                                <button class="btn btn-sm btn-outline btn-rounded btn-default">Follow</button>
+                                <br/>
+                                <h6><a href="#"> Block or report user </a></h6>
+                                <hr>
+                                <h6>Developer Program Member</h6>
+                                <hr>
+                                <p style="text-align: left;"><i class="fa fa-users"></i>
+                                  <strong><small><a href="#">{{userData.company}}</a></small></strong>
+                                  </p>
+                                <p style="text-align: left;"><i class="ti-location-pin"></i>
+                                  <small>{{userData.location}}</small>
+                                  </p>
+                                <p style="text-align: left;">
+                                  <i class="ti-email"></i>
+                                  <a href="#"> <small class="text-primary" >andhikamaheva@gmail.com </a></small>
+                                  </p>
+                                <p style="text-align: left;">
+                                <i class="ti-link"></i>
+                                  <a href="#"><small class="text-primary">{{userData.blog}} </a></small>
+                                  </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="white-box">
+                        
+                        <ul style="padding-left: 0" class="nav customtab nav-tabs" role="tablist">
+                            <li role="presentation" class="nav-item">
+                                <a href="#home1" class="nav-link active" aria-controls="home" role="tab" data-toggle="tab" aria-expanded="true">
+                                    <span class="visible-xs">
+                                                      <i class="ti-home"></i>
+                                                    </span>
+                                    <span class="hidden-xs"> Overview</span>
+                                </a>
+                            </li>
+                            <li role="presentation" class="nav-item">
+                                <a href="#profile1" class="nav-link" aria-controls="profile" role="tab" data-toggle="tab" aria-expanded="false">
+                                    <span class="visible-xs">
+                                                      <i class="ti-user"></i>
+                                                    </span>
+                                    <span style="padding-right:5px" class="hidden-xs">Repository</span>
+                                    <span class="label label-rouded label-danger pull-right">{{userData.public_repos}}</span>
+                                </a>
+                            </li>
+                            <li role="presentation" class="nav-item">
+                                <a href="#messages1" class="nav-link" aria-controls="messages" role="tab" data-toggle="tab" aria-expanded="false">
+                                    <span class="visible-xs">
+                                                      <i class="ti-email"></i>
+                                                    </span>
+                                    <span style="padding-right:5px" class="hidden-xs">Stars</span>
+                                    <span class="label label-rouded label-danger pull-right">157</span>
+                                </a>
+                            </li>
+                            <li role="presentation" class="nav-item">
+                                <a href="#settings1" class="nav-link" aria-controls="settings" role="tab" data-toggle="tab" aria-expanded="false">
+                                    <span class="visible-xs">
+                                                      <i class="ti-settings"></i>
+                                                    </span>
+                                    <span style="padding-right:5px" class="hidden-xs">Followers</span>
+                                    <span class="label label-rouded label-danger pull-right">{{userData.followers}}</span>
+                                </a>
+                            </li>
+                            <li role="presentation" class="nav-item">
+                                <a href="#settings1" class="nav-link" aria-controls="settings" role="tab" data-toggle="tab" aria-expanded="false">
+                                    <span class="visible-xs">
+                                                      <i class="ti-settings"></i>
+                                                    </span>
+                                    <span style="padding-right:5px" class="hidden-xs">Following</span>
+                                    <span class="label label-rouded label-danger pull-right">{{userData.following}}</span>
+                                </a>
+                            </li>
+                        </ul>
+                        
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane fade active in" id="home1">
+                                <div class="col-md-12">
+                                    <h4>
+                                      Pinned Repository
+                                    </h4>
+                                   
+                                    <div class="row">
+                                        <div ng-repeat="repo in repoData | limitTo:showMore ? repoData.length : 4" class="col-md-6">
+                                          <div class="well col-md-12">
+                                            <h5 class="text-primary">
+                                                <small><a href="{{repo.html_url}}">{{repo.name}}</a></small>
+                                            </h5>
+
+                                            <div class="text-muted">
+                                                <small>{{repo.description}}</small>
+                                            </div>
+                                            <div class="text-muted">
+
+                                                <div class="col-md-4">
+                                                    <h5><small><i class="fa fa-circle text-success"></i>  {{repo.language}}</small></h5>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <h5><small><i class="fa fa-star text-warning"></i>  {{repo.stargazers_count}}</small></h5>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <h5><small><i class="fa fa-code-fork text-info"></i>  {{repo.forks_count}}</small></h5>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-sm btn-outline btn-rounded btn-default" ng-click="showMore = true" class="">Show more</button>
+                                    <div class="clearfix"></div>
+
+                                    <hr>
+                                    <h4>1,478 contributions in the last year</h4>
+                                    <div id="heatmap1" style="width: 700px;"></div>
+    
+                                    <hr>
+                                    <h4> Contribution activity</h4>
+                                    <ul class="timeline">
+                                        <li>
+                                            <div class="timeline-badge muted"><i class="ti-bookmark-alt"></i> </div>
+                                            <div class="timeline-panel">
+                                                <div class="timeline-heading">
+                                                    <h4 class="text-primary timeline-title"><small>Created 1 repository</small></h4>
+                                                    <p><small class="text-muted"><i class="fa fa-clock-o"></i> 11 hours ago via Twitter</small> </p>
+                                                </div>
+                                                <div class="timeline-body">
+                                                    <a href="">
+                                                        <p class="text-primary"><small>andhikamaheva/awesome-jr-frontend--dede-</small></p>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="timeline-inverted">
+                                            <div class="timeline-badge default"><i class="ti-bookmark-alt"></i> </div>
+                                            <div class="timeline-panel">
+                                                <div class="timeline-heading">
+                                                    <h4 class="text-primary timeline-title"><small>Created 4 repository</small></h4>
+                                                    <p><small class="text-muted"><i class="fa fa-clock-o"></i> 11 hours ago via Twitter</small> </p>
+                                                </div>
+                                                <div class="timeline-body">
+                                                    <a href="#">
+                                                        <p class="text-primary"><small>andhikamaheva/awesome-jr-frontend--dede-</small></p>
+                                                    </a>
+                                                    <a href="#">
+                                                        <p class="text-primary"><small>andhikamaheva/awesome-jr-frontend--dede-</small></p>
+                                                    </a>
+                                                    <a href="#">
+                                                        <p class="text-primary"><small>andhikamaheva/awesome-jr-frontend--dede-</small></p>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </li>
+
+                                    </ul>
+                                    <button class="btn btn-outline btn-default btn-lg btn-block">Show more activity</button>
+                                </div></div>
+                                <div role="tabpanel" class="tab-pane fade" id="profile1">
+                                  <div class="panel  panel-default">
+                <div class="panel-heading">
+
+                    <form class="form-inline">
+                        <span>
+                            <span class="badge">{{repoData.length}}</span>
+                            <form role="search" class="app-search hidden-xs">
+                            <input type="text" ng-model="searchText" placeholder="Find a repository" class="form-control">
+                            <a href="">
+                            <i class="fa fa-search"></i>
+                            </a>
+                            </form>
+                            
+                        </span>
+                    </form>
+
+                </div>
+                <div class="panel-body">
+                    <div class="list-group">
+                        <div ng-repeat="repo in repoData | filter:searchText  | orderBy:predicate:reverse" class="list-group-item ">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <h4>
+                                        <small>
+                                            <span ng-if="repo.fork" class="octicon octicon-repo-forked"></span>
+                                            <span ng-if="!repo.fork" class="octicon octicon-repo"></span>
+                                        </small>
+                                        <a href="{{repo.html_url}}" target="_blank" >
+                                            {{repo.name}}
+                                        </a>
+                                        <small>{{repo.description}}</small>
+                                    </h4>
+
+                                    <small>
+                                        <a href="{{repo.homepage}}" class="">
+                                            <i class="fa fa-link"></i> WebPage
+                                        </a>
+                                    </small>
+                                </div>
+                                <div class="col-md-4">
+                                    <dl class="dl-horizontal">
+                                      <dt>Last Updated:</dt>
+                                      <dd>{{repo.updated_at | date : short : timezone}}</dd>
+                                      <dt>Created:</dt>
+                                      <dd>{{repo.created_at| date : short : timezone}}</dd>
+                                    </dl>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+                                    
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div role="tabpanel" class="tab-pane fade" id="messages1">
+                                    <div class="col-md-6">
+                                        <h3>Star</h3>
+                                        <h4>Star</h4>
+                                    </div>
+                                    <div class="col-md-5 pull-right">
+                                        <p>Star</p>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div role="tabpanel" class="tab-pane fade" id="settings1">
+                                    <div class="col-md-6">
+                                        <h3>Following</h3>
+                                        <h4>Following</h4>
+                                    </div>
+                                    <div class="col-md-5 pull-right">
+                                        <p>Following</p>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           
+            <div class="right-sidebar">
+                <div class="slimscrollright">
+                    <div class="rpanel-title"> Service Panel
+                        <span>
+                                                <i class="ti-close right-side-toggle"></i>
+                                              </span>
+                    </div>
+                    <div class="r-panel-body">
+                        <ul class="m-t-20 chatonline">
+                            <li>
+                                <b>Chat option</b>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)">
+                                    <img src="" alt="user-img" class="img-circle">
+                                    <span>Varun Dhavan 
+                                                        <small class="text-success">online</small>
+                                                      </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)">
+                                    <img src="" alt="user-img" class="img-circle">
+                                    <span>Genelia Deshmukh 
+                                                          <small class="text-warning">Away</small>
+                                                        </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)">
+                                    <img src="" alt="user-img" class="img-circle">
+                                    <span>Ritesh Deshmukh 
+                                                            <small class="text-danger">Busy</small>
+                                                          </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)">
+                                    <img src="" alt="user-img" class="img-circle">
+                                    <span>Arijit Sinh 
+                                                              <small class="text-muted">Offline</small>
+                                                            </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)">
+                                    <img src="" alt="user-img" class="img-circle">
+                                    <span>Govinda Star 
+                                                                <small class="text-success">online</small>
+                                                              </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)">
+                                    <img src="" alt="user-img" class="img-circle">
+                                    <span>John Abraham
+                                                                  <small class="text-success">online</small>
+                                                                </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)">
+                                    <img src="" alt="user-img" class="img-circle">
+                                    <span>Hritik Roshan
+                                                                    <small class="text-success">online</small>
+                                                                  </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)">
+                                    <img src="" alt="user-img" class="img-circle">
+                                    <span>Pwandeep rajan 
+                                                                      <small class="text-success">online</small>
+                                                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        
+        <footer class="footer text-center"><img style="width: 30px" src="plugins/images/mark-github-black.png"> </footer>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.10.0/d3.js"></script>
+    <script src="src/calendar-heatmap-mini.js"></script>
+    <script>
+        var now = moment().endOf('day').toDate();
+        var yearAgo = moment().startOf('day').subtract(1, 'year').toDate();
+        var chartData = d3.timeDays(yearAgo, now).map(function (dateElement) {
+            return {
+                date: dateElement,
+                count: (dateElement.getDay() !== 0 && dateElement.getDay() !== 6) ? Math.floor(Math.random() * 6000000) : Math.floor(Math.random() * 10)
+            };
+        });
+
+        
+
+        var chart1 = calendarHeatmapMini()
+            .data(chartData)
+            .selector('#heatmap1')
+            .colorRange(['#D8E6E7', '#218380'])
+            .tooltipEnabled(true)
+            .legendEnabled(true)
+            .onClick(function (data) {
+                console.log('onClick callback. Data:', data);
+            });
+
+        chart1();
+
+        
+    </script>
+    <script src="js/myscript.js"></script>
+    <script src="plugins/bower_components/jquery/dist/jquery.min.js"></script>
+    
+    <script src="bootstrap/dist/js/tether.min.js"></script>
+    <script src="bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="plugins/bower_components/bootstrap-extension/js/bootstrap-extension.min.js"></script>
+  
+    <script src="plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.js"></script>
+
+    <script src="js/jquery.slimscroll.js"></script>
+    
+    <script src="js/waves.js"></script>
+   
+    <script src="js/custom.min.js"></script>
+</body>
+
+</html>
